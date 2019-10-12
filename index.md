@@ -7,5 +7,5 @@ Voice conversion (VC) is a technique to modify the source speaker's voice to sou
 This section presents our baseline voice conversion approach using the LPCNet vocoder.
 
 <audio controls="" loop="false" preload="none">
-    <source src="./audio/gaobaiqiqiu0.wav" type="audio/wav">
+    <source src="audio\gaobaiqiqiu0.wav" type="wav">
 </audio>
