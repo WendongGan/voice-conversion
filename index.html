@@ -88,10 +88,13 @@
             This vocoder can synthesize speech with close to natural quality while running faster than real time on a standard CPU. 
             Therefore, we use the LPCNet vocoder for VC. To control the prosody of the generated speech, we use the pitch and the vuv features as additional inputs.
             </p>
-            <img id="img1" src="./image/1.png" class="img-fluid" style="width:100%"
+			<br>
+			<div align="center">
+            <img id="img1" src="./image/1.png" class="img-fluid" style="width:80%"
               alt="Baseline system framework">
             <figcaption class="figure-caption text-center">
               Figure1. Block diagram of (a) training and (b) conversion workflows of the baseline VC system.
+			</div>
           </div>
         </div>
       </div>
@@ -114,12 +117,31 @@
             thus enabling fine-grained control of the prosody of the converted speech. </p>
             
             
-            
-            <img id="img2" src="./image/2.png" class="img-fluid" style="width:100%"
+            <div align="center">
+            <img id="img2" src="./image/2.png" class="img-fluid" style="width:70%"
               alt="Proposed system framework">
             <figcaption class="figure-caption text-center">
               Figure2. Block diagram of (a) training and (b) conversion workflows of the proposed VC system.
-           
+			</div>
+			
+			<br><br>
+			<p>
+			The architecture of reference encoder is shown in Fig. 3. 
+			It takes a mel-spectrogram as the input.
+			The reference encoder contains 6-layer 2D-convolutional layers. 
+			Each layer is composed of 3 X 3 filters with 1 X 2 stride, SAME padding and ReLU activation. 
+			The number of filters in each layer are [32, 32, 64, 64, 128, 128]. 
+			The outputs of the last convolutional layer is fed to a uni-directional Gated Recurrent Unit (GRU) with one unit and a tanh activation. 
+			The outputs of the GRU at every timestep form the variable-length prosody embeddings.
+			</p>
+			
+			<div align="center">
+            <img id="img3" src="./image/3.png" class="img-fluid" style="width:20%"
+              alt="Proposed system framework">
+            <figcaption class="figure-caption text-center">
+              Figure3. The prosody reference encoder module. 
+			  A 6-layer stack of 2D convolutions with ReLU activations, followed by a single-layer GRU with 1 unit and a tanh activation.
+			</div>
           </div>
         </div>
       </div>
