@@ -16,7 +16,7 @@ Vocoders influence the quality of converted speech. Prior works utilize conventi
 
 
 
- ![1](.\image\1.png)
+ ![1](https://github.com/zeroQiaoba/voice-conversion/raw/master/image/1.png)
 
 
 
@@ -26,4 +26,4 @@ Despite the good performance of the baseline system, it still has some limitatio
 
 To overcome the above limitations, we utilize the reference encoder to learn a latent prosody  representation from the input speech directly. We introduce temporal structures in the reference encoder,             thus enabling fine-grained control of the prosody of the converted speech. 
 
- ![1](.\image\2.png)
+ ![1](https://github.com/zeroQiaoba/voice-conversion/raw/master/image/2.png)
