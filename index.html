@@ -47,13 +47,15 @@
         <div class="row align-items-center">
           <div class="col-md-12">
             <h1><a class="text-light">
-				Towards Fine-Grained Prosody Control for Voice Conversion</a></h1>
+				Towards Fine-Grained Prosody Control for Voice Conversion <br> (Submitted to ICASSP2019)</a></h1>
             <p>
               <div class="row">
                 <div class="col-md col-sm-12"><a class="text-light">Zheng Lian</a> </div>
               </div>
             </p>
-            <p><a class="text-light">School of Artificial Intelligence, University of Chinese Academy of Sciences</p></a>
+            <p><a class="text-light">National Laboratory of Pattern Recognition, CASIA, Beijing, China</p></a>
+			<p><a class="text-light">CAS Center for Excellence in Brain Science and Intelligence Technology, Beijing, China</p></a>
+			<p><a class="text-light">School of Artificial Intelligence, University of Chinese Academy of Sciences, Beijing, China</p></a>
           </div>
         </div>
       </div>
@@ -93,7 +95,7 @@
             <img id="img1" src="./image/1.png" class="img-fluid" style="width:80%"
               alt="Baseline system framework">
             <figcaption class="figure-caption text-center">
-              Figure1. Block diagram of (a) training and (b) conversion workflows of the baseline VC system.
+              Figure1. Block diagram of (a) training and (b) conversion stages of the baseline VC system.
 			</div>
           </div>
         </div>
@@ -121,7 +123,7 @@
             <img id="img2" src="./image/2.png" class="img-fluid" style="width:70%"
               alt="Proposed system framework">
             <figcaption class="figure-caption text-center">
-              Figure2. Block diagram of (a) training and (b) conversion workflows of the proposed VC system.
+              Figure2. Block diagram of (a) training and (b) conversion stages of the proposed VC system.
 			</div>
 			
 			<br><br>
@@ -132,7 +134,7 @@
 			Each layer is composed of 3 X 3 filters with 1 X 2 stride, SAME padding and ReLU activation. 
 			The number of filters in each layer are [32, 32, 64, 64, 128, 128]. 
 			The outputs of the last convolutional layer is fed to a uni-directional Gated Recurrent Unit (GRU) with one unit and a tanh activation. 
-			The outputs of the GRU at every timestep form the variable-length prosody embeddings.
+			The outputs of the GRU at every time step form the variable-length prosody embeddings.
 			</p>
 			
 			<div align="center">
@@ -157,7 +159,7 @@
             <p>
             <b>Comparison system 1</b>: It comes from the baseline system. Ignoring f0, only the 512-dimensional PPG is used to predict acoustic features. 
             <br>
-            <b>Comparison system 2</b>: It comes from the baseline system. Besides the picth and vuv features, we also use the aperiodicity coefficient to control the prosody.
+            <b>Comparison system 2</b>: It comes from the baseline system. Besides the pitch and vuv features, we also use the aperiodicity coefficient to control the prosody.
             </p>
       
             
@@ -173,7 +175,11 @@
           <br>
           Training corpus: One female speaker with 15000 utterances.
           <br>
-          Evalutaion corpus: Our own singing corpus.</p>
+          Evaluation corpus: One female speaker and one male speaker. The female speaker provides 20 samples from audiobook recordings.
+		  The male speaker provides 20 songs.
+		  </p>
+		  
+		  <h3>Male to Female</h3>
                   <div class="big-screen">
                     <table class="table">
                       <thead>
@@ -1008,7 +1014,438 @@
                     </table>
                     
                   </div>
-        </div>
+		  <hr>
+		  
+		  <h3>Female to Female</h3>
+                  <div class="big-screen">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th></th>
+                          <th>Source</th>
+                          <th>Target</th>
+                          <th>Baseline</th>
+						  <th>Comparison 1</th>
+						  <th>Comparison 2</th>
+                          <th>Proposed</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+						
+						<tr>
+                          <th scope="row">Sample 1</th>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00101.wav" type="audio/wav" />
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/ts00001.wav" type="audio/wav" />
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00101-logs-TS_ppgsf0vuv_512_lpc_24k_direct3_lr0.001_model.ckpt-95000-ts.wav" type="audio/wav" />
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00101-logs-TS_ppgs_512_lpc_24k_direct3_lr0.001_model.ckpt-153000-0.wav" type="audio/wav" />
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00101-logs-TS_ppgsbapf0vuv_512_lpc_24k_direct3_lr0.001_model.ckpt-86000-ts.wav" type="audio/wav" />
+                            </audio>
+                          </td>
+						  <td>
+                            <audio controls>
+                              <source src="./audio/my00101-logs-TS_ppgs_512_lpc_24k_mel_speed_FrameLevel1_1_test2_lr0.001_model.ckpt-606000-0.wav" type="audio/wav" />
+                            </audio>
+                          </td>
+                        </tr>
+						
+						<tr>
+                          <th scope="row">Sample 2</th>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00303.wav" type="audio/wav" />
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/ts00001.wav" type="audio/wav" />
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00303-logs-TS_ppgsf0vuv_512_lpc_24k_direct3_lr0.001_model.ckpt-95000-ts.wav" type="audio/wav" />
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00303-logs-TS_ppgs_512_lpc_24k_direct3_lr0.001_model.ckpt-153000-0.wav" type="audio/wav" />
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00303-logs-TS_ppgsbapf0vuv_512_lpc_24k_direct3_lr0.001_model.ckpt-86000-ts.wav" type="audio/wav" />
+                            </audio>
+                          </td>
+						  <td>
+                            <audio controls>
+                              <source src="./audio/my00303-logs-TS_ppgs_512_lpc_24k_mel_speed_FrameLevel1_1_test2_lr0.001_model.ckpt-606000-0.wav" type="audio/wav" />
+                            </audio>
+                          </td>
+                        </tr>
+						
+						
+						
+						
+						<tr>
+                          <th scope="row">Sample 3</th>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00508.wav" type="audio/wav" />
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/ts00001.wav" type="audio/wav" />
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00508-logs-TS_ppgsf0vuv_512_lpc_24k_direct3_lr0.001_model.ckpt-95000-ts.wav" type="audio/wav" />
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00508-logs-TS_ppgs_512_lpc_24k_direct3_lr0.001_model.ckpt-153000-0.wav" type="audio/wav" />
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00508-logs-TS_ppgsbapf0vuv_512_lpc_24k_direct3_lr0.001_model.ckpt-86000-ts.wav" type="audio/wav" />
+                            </audio>
+                          </td>
+						  <td>
+                            <audio controls>
+                              <source src="./audio/my00508-logs-TS_ppgs_512_lpc_24k_mel_speed_FrameLevel1_1_test2_lr0.001_model.ckpt-606000-0.wav" type="audio/wav" />
+                            </audio>
+                          </td>
+                        </tr>
+						
+						
+						
+						<tr>
+                          <th scope="row">Sample 4</th>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00905.wav" type="audio/wav" />
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/ts00001.wav" type="audio/wav" />
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00905-logs-TS_ppgsf0vuv_512_lpc_24k_direct3_lr0.001_model.ckpt-95000-ts.wav" type="audio/wav" />
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00905-logs-TS_ppgs_512_lpc_24k_direct3_lr0.001_model.ckpt-153000-0.wav" type="audio/wav" />
+                            </audio>
+                          </td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00905-logs-TS_ppgsbapf0vuv_512_lpc_24k_direct3_lr0.001_model.ckpt-86000-ts.wav" type="audio/wav" />
+                            </audio>
+                          </td>
+						  <td>
+                            <audio controls>
+                              <source src="./audio/my00905-logs-TS_ppgs_512_lpc_24k_mel_speed_FrameLevel1_1_test2_lr0.001_model.ckpt-606000-0.wav" type="audio/wav" />
+                            </audio>
+                          </td>
+                        </tr>
+						
+						
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="small-screen">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Sample 1</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Source</td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00101.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Target</td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/ts00001.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Baseline</td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00101-logs-TS_ppgsf0vuv_512_lpc_24k_direct3_lr0.001_model.ckpt-95000-ts.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Comparison 1</td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00101-logs-TS_ppgs_512_lpc_24k_direct3_lr0.001_model.ckpt-153000-0.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Comparison 2</td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00101-logs-TS_ppgsbapf0vuv_512_lpc_24k_direct3_lr0.001_model.ckpt-86000-ts.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Proposed</td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00101-logs-TS_ppgs_512_lpc_24k_mel_speed_FrameLevel1_1_test2_lr0.001_model.ckpt-606000-0.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  
+                   
+                    
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Sample 2</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Source</td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00303.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Target</td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/ts00001.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Baseline</td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00303-logs-TS_ppgsf0vuv_512_lpc_24k_direct3_lr0.001_model.ckpt-95000-ts.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Comparison 1</td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00303-logs-TS_ppgs_512_lpc_24k_direct3_lr0.001_model.ckpt-153000-0.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Comparison 2</td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00303-logs-TS_ppgsbapf0vuv_512_lpc_24k_direct3_lr0.001_model.ckpt-86000-ts.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Proposed</td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00303-logs-TS_ppgs_512_lpc_24k_mel_speed_FrameLevel1_1_test2_lr0.001_model.ckpt-606000-0.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    
+                    
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Sample 3</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Source</td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00508.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Target</td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/ts00001.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Baseline</td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00508-logs-TS_ppgsf0vuv_512_lpc_24k_direct3_lr0.001_model.ckpt-95000-ts.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Comparison 1</td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00508-logs-TS_ppgs_512_lpc_24k_direct3_lr0.001_model.ckpt-153000-0.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Comparison 2</td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00508-logs-TS_ppgsbapf0vuv_512_lpc_24k_direct3_lr0.001_model.ckpt-86000-ts.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Proposed</td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00508-logs-TS_ppgs_512_lpc_24k_mel_speed_FrameLevel1_1_test2_lr0.001_model.ckpt-606000-0.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    
+                    
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Sample 4</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>Source</td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00905.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Target</td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/ts00001.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Baseline</td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00905-logs-TS_ppgsf0vuv_512_lpc_24k_direct3_lr0.001_model.ckpt-95000-ts.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Comparison 1</td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00905-logs-TS_ppgs_512_lpc_24k_direct3_lr0.001_model.ckpt-153000-0.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Comparison 2</td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00905-logs-TS_ppgsbapf0vuv_512_lpc_24k_direct3_lr0.001_model.ckpt-86000-ts.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Proposed</td>
+                          <td>
+                            <audio controls>
+                              <source src="./audio/my00905-logs-TS_ppgs_512_lpc_24k_mel_speed_FrameLevel1_1_test2_lr0.001_model.ckpt-606000-0.wav" type="audio/wav" />
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    
+                    
+                  </div>
+		  
+		</div>
       </div>
       <hr>
       <div class="row" id="ref">
@@ -1050,12 +1487,10 @@
     <div class="container">
       <p class="text-center">
         <small>
-          Cross-lingual Voice Conversion
+          Towards Fine-Grained Prosody Control for Voice Conversion
           <br>
-          Cross-lingual Voice Conversion with Bilingual Phonetic Posteriorgram and Average Modeling
-          <br>
-          <a href="https://www.researchgate.net/profile/Yi_Zhou184" class="text-light"><strong>Yi Zhou</strong></a> |
-          E0154158@u.nus.edu
+          <a class="text-light"><strong>Zheng Lian</strong></a> |
+          lianzheng2016@ia.ac.cn
         </small>
       </p>
     </div>
