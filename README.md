@@ -2,7 +2,7 @@
 
 **The code is coming soon**
 
-blog website: [zeroqiaoba.github.io/voice-conversion](zeroqiaoba.github.io/voice-conversion)
+blog website: [zeroqiaoba.github.io/voice-conversion](https://zeroqiaoba.github.io/voice-conversion/)
 
 ## PPGs-based Voice Conversion
 
